@@ -1,17 +1,31 @@
 <script>
 export default {
   name: "product_item_one",
-  props:["title","description","price","sale","image"]
+  props:["id","title","description","price","sale","image"],
+  created(){
+    if(this.title){
+    this.url = this.title.replace(" ", "-")
+    }
+  },
+  data(){
+    return{
+      url : null,
+    }
+  }
 }
 </script>
 
 <template>
-  <q-card class="my-card">
+  <router-link :to="{name :'product_show', params : {id : id , title : url}}">
     <q-img :src="image">
       <div class="absolute-bottom text-h6">
         {{ title }}
       </div>
     </q-img>
+  </router-link>
+  <q-card class="my-card">
+
+
 
     <q-card-section>
      <div>
